@@ -1,4 +1,7 @@
 <?php 
+
+	//echo hash("sha512", "b");
+	
 	
 	//GET ja POSTi muutujad
 	//var_dump($_GET);
@@ -65,6 +68,32 @@
 		}
 		
 	} 
+	
+	// peab olema email ja parool
+	// ühtegi errorit
+	
+	if ( isset($_POST["signupEmail"]) && 
+		 isset($_POST["signupPassword"]) && 
+		 $signupEmailError == "" && 
+		 empty($signupPasswordError)
+		) {
+		
+		// salvestame ab'i
+		echo "Salvestan... <br>";
+		
+		echo "email: ".$signupEmail."<br>";
+		echo "password: ".$_POST["signupPassword"]."<br>";
+		
+		$password = hash("sha512", $_POST["signupPassword"]);
+		
+		echo "password hashed: ".$password."<br>";
+		
+		
+		
+		
+	}
+	
+	
 
 ?>
 <!DOCTYPE html>
