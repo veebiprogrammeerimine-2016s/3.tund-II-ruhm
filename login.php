@@ -105,6 +105,8 @@
 		// sqli rida
 		$stmt = $mysqli->prepare("INSERT INTO user_sample (email, password) VALUES (?, ?)");
 		
+		echo $mysqli->error;
+		
 		// stringina üks täht iga muutuja kohta (?), mis tüüp
 		// string - s
 		// integer - i
