@@ -1,5 +1,5 @@
 <?php 
-
+	
 	//GET ja POSTi muutujad
 	//var_dump($_GET);
 	//echo "<br>";
@@ -7,8 +7,12 @@
 	
 	//echo strlen("äö");
 	
+	// MUUTUJAD
 	$signupEmailError = "";
 	$signupPasswordError = "";
+	$signupEmail = "";
+	$signupGender = "";
+	
 
 	// on üldse olemas selline muutja
 	if( isset( $_POST["signupEmail"] ) ){
@@ -19,9 +23,14 @@
 			
 			$signupEmailError = "See väli on kohustuslik";
 			
+		} else {
+			
+			// email olemas 
+			$signupEmail = $_POST["signupEmail"];
+			
 		}
 		
-	}
+	} 
 	
 	if( isset( $_POST["signupPassword"] ) ){
 		
@@ -44,6 +53,18 @@
 		}
 		
 	}
+	
+	
+	// GENDER
+	if( isset( $_POST["signupGender"] ) ){
+		
+		if(!empty( $_POST["signupGender"] ) ){
+		
+			$signupGender = $_POST["signupGender"];
+			
+		}
+		
+	} 
 
 ?>
 <!DOCTYPE html>
@@ -77,9 +98,29 @@
 		<label>E-post</label>
 		<br>
 		
-		<input name="signupEmail" type="text"> <?php echo $signupEmailError; ?>
+		<input name="signupEmail" type="text" value="<?=$signupEmail;?>"> <?=$signupEmailError;?>
 		<br><br>
 		
+		<?php if($signupGender == "male") { ?>
+			<input type="radio" name="signupGender" value="male" checked> Male<br>
+		<?php }else { ?>
+			<input type="radio" name="signupGender" value="male"> Male<br>
+		<?php } ?>
+		
+		<?php if($signupGender == "female") { ?>
+			<input type="radio" name="signupGender" value="female" checked> Female<br>
+		<?php }else { ?>
+			<input type="radio" name="signupGender" value="female"> Female<br>
+		<?php } ?>
+		
+		<?php if($signupGender == "other") { ?>
+			<input type="radio" name="signupGender" value="other" checked> Other<br>
+		<?php }else { ?>
+			<input type="radio" name="signupGender" value="other"> Other<br>
+		<?php } ?>
+		
+		
+		<br>
 		<input type="password" name="signupPassword" placeholder="Parool"> <?php echo $signupPasswordError; ?>
 		<br><br>
 		
